@@ -1,4 +1,4 @@
-import 'package:covid_application_flutter/views/home_page.dart';
+import 'package:covid_application_flutter/views/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
