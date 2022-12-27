@@ -1,4 +1,5 @@
 import 'package:covid_application_flutter/services/state_services.dart';
+import 'package:covid_application_flutter/views/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shimmer/shimmer.dart';
@@ -64,22 +65,26 @@ class _CountriesListState extends State<CountriesList>
                           child: Column(
                             children: [
                               Shimmer.fromColors(
-                                  child: ListTile(
-                                    title: Container(
-                                      color: Colors.white,
-                                      height: 10,
-                                      width: 89,
-                                    ),
-                                    subtitle: Container(
-                                      color: Colors.white,
-                                      height: 10,
-                                      width: 89,
-                                    ),
-                                    leading: Container(
-                                      color: Colors.white,
-                                      height: 50,
-                                      width: 50,
-                                    ),
+                                  child: Column(
+                                    children: [
+                                      ListTile(
+                                        title: Container(
+                                          color: Colors.white,
+                                          height: 10,
+                                          width: 89,
+                                        ),
+                                        subtitle: Container(
+                                          color: Colors.white,
+                                          height: 10,
+                                          width: 89,
+                                        ),
+                                        leading: Container(
+                                          color: Colors.white,
+                                          height: 50,
+                                          width: 50,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   baseColor: Colors.grey.shade700,
                                   highlightColor: Colors.grey.shade100),
@@ -96,19 +101,38 @@ class _CountriesListState extends State<CountriesList>
                               if (searchController.text.isEmpty) {
                                 return Column(
                                   children: [
-                                    ListTile(
-                                      leading: Image(
-                                        height: 50,
-                                        width: 50,
-                                        image: NetworkImage(
-                                            snapshot.data![index]['countryInfo']
-                                                ['flag']),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    DetailsScreen(
+                                                      active: null,
+                                                      image: '',
+                                                      name: '',
+                                                      recovered: null,
+                                                      test: null,
+                                                      todayRecovered: null,
+                                                      totalCase: null,
+                                                      totalDeath: null,
+                                                      totalRecovered: null,
+                                                    ))));
+                                      },
+                                      child: ListTile(
+                                        leading: Image(
+                                          height: 50,
+                                          width: 50,
+                                          image: NetworkImage(
+                                              snapshot.data![index]
+                                                  ['countryInfo']['flag']),
+                                        ),
+                                        title: Text(
+                                            snapshot.data![index]['country']),
+                                        subtitle: Text(snapshot.data![index]
+                                                ['cases']
+                                            .toString()),
                                       ),
-                                      title: Text(
-                                          snapshot.data![index]['country']),
-                                      subtitle: Text(snapshot.data![index]
-                                              ['cases']
-                                          .toString()),
                                     ),
                                   ],
                                 );
