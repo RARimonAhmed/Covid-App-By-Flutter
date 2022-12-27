@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                   child: const Center(
                     child: Image(
-                      image: AssetImage('images/virus_rem.png'),
+                      image: AssetImage('images/covidvirus.png'),
                       fit: BoxFit.contain,
                     ),
                   ),
